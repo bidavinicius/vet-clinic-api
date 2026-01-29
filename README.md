@@ -23,26 +23,26 @@ Todos os corpos de requisição (Body) e respostas estão em formato JSON.
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| `GET` | `/api/users` | Lista todos os animais cadastrados | 
-| `GET` | `/api/users/login` | Retorna detalhes de um animal específico pelo ID |
-| `GET` | `/api/users/login` | Retorna detalhes de um animal específico pelo nome |
-| `POST` | `/api/users/:id` | Cadastra um novo animal |
-| `PUT` | `/api/users/:id` | Atualiza dados de um animal existente | 
-| `DELETE` | `/api/users/:id` | Remove um animal do sistema | 
+| `GET` | `/animais` | Lista todos os animais cadastrados | 
+| `GET` | `/animais/:id` | Retorna detalhes de um animal específico pelo ID |
+| `GET` | `/animais/nome/:nome` | Retorna detalhes de um animal específico pelo nome |
+| `POST` | `/amimais` | Cadastra um novo animal |
+| `PUT` | `/animais/:id` | Atualiza dados de um animal existente | 
+| `DELETE` | `/animais/:id` | Remove um animal do sistema | 
 
 ### Veterinários
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| `GET` | `/api/users` | Lista todos os veterińários cadastrados | 
-| `POST` | `/api/users/login` | Cadastra um novo veterinário | 
+| `GET` | `/veterinarios` | Lista todos os veterińários cadastrados | 
+| `POST` | `/veterinarios` | Cadastra um novo veterinário | 
 
 ### Consultas
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| `GET` | `/api/users` | Lista todos as consultas agendadas | 
-| `POST` | `/api/users/login` | Cadastra uma nova consulta | 
+| `GET` | `/consultas` | Lista todos as consultas agendadas | 
+| `POST` | `/consultas` | Cadastra uma nova consulta | 
 
 
 ## Estrutura do Projeto
