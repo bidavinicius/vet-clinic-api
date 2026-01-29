@@ -5,7 +5,7 @@ const animalSchema = new mongoose.Schema({
     especie: { type: String, required: true },
     raca: { type: String, required: true },
     cor: { type: String, required: true },
-    dataNascimento: { type: Date }, 
+    dataNascimento: { type: String, required: true }, 
 });
 
 export default mongoose.model('Animal', animalSchema);
