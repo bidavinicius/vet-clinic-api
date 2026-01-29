@@ -6,7 +6,7 @@ API RESTful desenvolvida em Node.js para o gerenciamento de uma clínica veterin
 
 Para rodar, é necessário criar um arquivo .env na raiz do projeto, com a variável "MONGO_URI" vinculada ao seu próprio cluster no MongoDB Atlas, conforme exemplo:
 
-MONGO_URI=mongodb+srv://<username>:<user.password>@plss.ekjdksa.mongodb.net/?appName=PLSS 
+MONGO_URI=mongodb+srv://<user.name>:<user.password>@plss.ekjdksa.mongodb.net/?appName=PLSS 
 
 (Originalmente, a porta em que o servidor rodaria fica nesse arquivo também, entretanto, para facilitar, tirei a necessidade dessa variável nesse arquivo.)
 
