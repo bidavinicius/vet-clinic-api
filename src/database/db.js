@@ -1,10 +1,16 @@
-const database = {
-    animais: [],
-    veterinarios: [],
-    consultas: [],
-    idVet: 1,
-    idAnimal: 1,
-    idConsulta: 1
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("Conectado");
+    } catch (error) {
+        console.error("Erro ao conectar ao MongoDB:", error);
+        process.exit(1);
+    }
 }
 
-export default database;
+export default connectDB;
