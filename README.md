@@ -2,17 +2,26 @@
 
 API RESTful desenvolvida em Node.js para o gerenciamento de uma clínica veterinária. O sistema permite o cadastro e administração de veterinários, pacientes (animais) e agendamento de consultas.
 
+## IMPORTANTE
+
+Para rodar, é necessário criar um arquivo .env na raiz do projeto, com a variável "MONGO_URI" vinculada ao seu próprio cluster no MongoDB Atlas, conforme exemplo:
+
+MONGO_URI=mongodb+srv://<username>:<user.password>@plss.ekjdksa.mongodb.net/?appName=PLSS 
+
+(Originalmente, a porta em que o servidor rodaria fica nesse arquivo também, entretanto, para facilitar, tirei a necessidade dessa variável nesse arquivo.)
+
 ## Sobre o Projeto
 
 Este projeto foi desenvolvido como parte de um teste técnico. O meu foco principal foi a estruturação de uma arquitetura limpa e escalável (MVC), utilizando o modelo try/catch para evitar confusão em erros internos.
 
-Por se tratar de um teste de lógica e arquitetura, a persistência de dados é realizada **em memória**, dispensando a configuração de bancos de dados externos para execução imediata.
+Essa branch e trata da mesma API, porém integrada com o MongoDB, banco de dados não relacionável, por meio do Mongoose.
 
 ## Tecnologias Utilizadas
 
 * **Node.js** (Runtime environment)
 * **Express** (Framework web)
 * **CORS** (Cross-origin resource sharing)
+* **MongoDB** (NoSQL Database)
 * **JavaScript**
 
 ## Documentação da API
@@ -42,7 +51,7 @@ Todos os corpos de requisição (Body) e respostas estão em formato JSON.
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
 | `GET` | `/consultas` | Lista todos as consultas agendadas | 
-| `GET` | `/consultas/busca` | Lista as consultas de acordo com o parâmetro selecionado (Data, Animal, Veterinário ou Motivo) | 
+| `GET` | `/consultas/:id` | Busca a consulta pelo ID | 
 | `POST` | `/consultas` | Cadastra uma nova consulta | 
 
 
@@ -53,7 +62,8 @@ O projeto segue o padrão MVC (Model-View-Controller) para garantir separação 
 ```
 src/
 ├── controllers/    # Lógica do programa e regras da aplicação
-├── database/       # Banco de dados (In-Memory)
+├── database/       # Configuração do Banco de Dados MongoDB
+├── models/         # Modelos dos objetos a serem salvos no Banco de dados
 ├── routes.js       # Definição dos endpoints
 └── app.js          # Configuração do Express
 server.js           # Ponto de entrada da aplicação
