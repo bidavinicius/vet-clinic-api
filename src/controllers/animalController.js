@@ -11,7 +11,7 @@ export const listarAnimal = async (req, res) => {
 
 export const cadastrarAnimal = async (req, res) => {
     try {
-        const { nome, especie, raca, cor,  } = req.body;
+        const { nome, especie, raca, cor, dataNascimento } = req.body;
 
         if (!nome || !especie || !raca || !cor || !dataNascimento) {
             return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
@@ -46,9 +46,6 @@ export const buscarAnimalPorId = async (req, res) => {
         return res.status(500).json({ error: 'Erro no sistema ao buscar animal.' });
     }
 };
-
-//Como não foi especificado a maneira de mostrar os detalhes dos animais, fiz a opção convencional por ID, logo acima, mas também fiz por nome, já que numa clínica veterinária pode ser difícil lembrar o ID de cada animal. 
-//Além disso, teria como fazer uma única função que buscasse tanto por ID quanto por nome, simplesmente trocando o parâmetro. Achei interessante deixar as duas opções separadas, já que acredito que a função de busca por ID funciona de uma maneira mais direta e eficiente, então quis deixar exposto o código para ambas as situações.
 
 export const buscarAnimalPorNome = async (req, res) => {
     try {

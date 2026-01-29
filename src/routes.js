@@ -15,9 +15,8 @@ routes.post('/animais', cadastrarAnimal);
 routes.put('/animais/:id', atualizarAnimal);
 routes.delete('/animais/:id', deletarAnimal);
 
-routes.get('/consultas/busca', buscarConsulta);
 routes.get('/consultas', listarConsulta);
 routes.post('/consultas', cadastrarConsulta);
-
+routes.get('/consultas/:id', buscarConsulta);
 
 export default routes;

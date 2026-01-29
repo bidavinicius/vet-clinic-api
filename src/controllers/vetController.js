@@ -1,6 +1,6 @@
 import Veterinario from "../models/vet_schema.js";
 
-export const listarVets = async (req, res) => {
+export const listarVet = async (req, res) => {
   try {
     const vets = await Veterinario.find();
     return res.status(200).json(vets);
