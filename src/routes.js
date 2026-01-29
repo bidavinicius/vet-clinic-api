@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { listarVet, cadastrarVet } from './controllers/vetController.js';
 import { listarAnimal, buscarAnimalPorId, buscarAnimalPorNome,cadastrarAnimal, atualizarAnimal, deletarAnimal } from './controllers/animalController.js';
-import { listarConsulta, cadastrarConsulta } from './controllers/consultaController.js';
+import { listarConsulta, cadastrarConsulta, buscarConsulta } from './controllers/consultaController.js';
 
 const routes = Router();
 
@@ -15,7 +15,9 @@ routes.post('/animais', cadastrarAnimal);
 routes.put('/animais/:id', atualizarAnimal);
 routes.delete('/animais/:id', deletarAnimal);
 
+routes.get('/consultas/busca', buscarConsulta);
 routes.get('/consultas', listarConsulta);
 routes.post('/consultas', cadastrarConsulta);
+
 
 export default routes;
