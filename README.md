@@ -42,6 +42,7 @@ Todos os corpos de requisição (Body) e respostas estão em formato JSON.
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
 | `GET` | `/consultas` | Lista todos as consultas agendadas | 
+| `GET` | `/consultas/busca` | Lista as consultas de acordo com o parâmetro selecionado (Data, Animal, Veterinário ou Motivo) | 
 | `POST` | `/consultas` | Cadastra uma nova consulta | 
 
 
