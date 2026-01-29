@@ -1,9 +1,9 @@
-import db from "../database/db.js";
+import Veterinario from "../models/vet_schema.js";
 
-//Essa função estava fora do requerido no teste, mas como é uma função básica de CRUD, achei interessante incluir.
-export const listarVet = async (req, res) => {
+export const listarVets = async (req, res) => {
   try {
-    return res.json(db.veterinarios);
+    const vets = await Veterinario.find();
+    return res.status(200).json(vets);
   } catch (error) {
     return res.status(500).json({ error: "Erro no sistema ao listar veterinários." });
   }
@@ -12,21 +12,16 @@ export const listarVet = async (req, res) => {
 export const cadastrarVet = async (req, res) => {
   try {
     const { nome } = req.body;
-
+    
     if (!nome) {
-      return res
-        .status(400)
-        .json({ error: "Nome do veterinário é obrigatório." });
+      return res.status(400).json({ error: "O nome é obrigatório." });
     }
-    const newVet = {
-      id: db.idVet,
-      nome,
-    };
 
-    db.veterinarios.push(newVet);
-    db.idVet++;
-    return res.status(201).json(newVet);
+    const novoVet = new Veterinario({ nome });
+    await novoVet.save();
+    return res.status(201).json(novoVet);
+
   } catch (error) {
-    return res.status(500).json({ error: "Erro no sistema ao criar veterinário." });
+    return res.status(500).json({ error: "Erro no sistema ao cadastrar veterinário." });
   }
 };

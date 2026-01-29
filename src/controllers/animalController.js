@@ -1,8 +1,9 @@
-import db from '../database/db.js';
+import Animal from "../models/animal_schema.js";
 
 export const listarAnimal = async (req, res) => {
     try {
-        return res.json(db.animais);
+        const animais = await Animal.find();
+        return res.status(200).json(animais);
     } catch (error) {
         return res.status(500).json({ error: 'Erro no sistema ao listar animais.' });
     }
@@ -10,34 +11,31 @@ export const listarAnimal = async (req, res) => {
 
 export const cadastrarAnimal = async (req, res) => {
     try {
-        const { nome, especie, raca, cor, dataNascimento } = req.body;
+        const { nome, especie, raca, cor,  } = req.body;
 
         if (!nome || !especie || !raca || !cor || !dataNascimento) {
             return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
         }
 
-        const novoAnimal = {
-            id: db.idAnimal,
+        const novoAnimal = new Animal({
             nome,
             especie,
             raca,
             cor,
             dataNascimento
-        };
+        });
 
-        db.animais.push(novoAnimal);
-        db.idAnimal++;
+        await novoAnimal.save();
         return res.status(201).json(novoAnimal);
     } catch (error) {
-        return res.status(500).json({ error: 'Erro no sistema ao criar animal.' });
+        return res.status(500).json({ error: 'Erro no sistema ao cadastrar animal.' });
     }
-};
-
+};          
 
 export const buscarAnimalPorId = async (req, res) => {
     try {
         const { id } = req.params;
-        const animal = db.animais.find(animalID => animalID.id === parseInt(id));
+        const animal = await Animal.findById(id);
 
         if (!animal) {
             return res.status(404).json({ error: 'Animal não encontrado.' });
@@ -55,15 +53,15 @@ export const buscarAnimalPorId = async (req, res) => {
 export const buscarAnimalPorNome = async (req, res) => {
     try {
         const { nome } = req.params;
-        const animaisEncontrados = db.animais.filter(animal => animal.nome.toLowerCase() === nome.toLowerCase());
+        const animal = await Animal.findOne({ nome: nome });
 
-        if (animaisEncontrados.length === 0) {
-            return res.status(404).json({ error: 'Nenhum animal encontrado com esse nome.' });
+        if (!animal) {
+            return res.status(404).json({ error: 'Animal não encontrado.' });
         }
 
-        return res.json(animaisEncontrados);
+        return res.json(animal);
     } catch (error) {
-        return res.status(500).json({ error: 'Erro no sistema ao buscar animais.' });
+        return res.status(500).json({ error: 'Erro no sistema ao buscar animal.' });
     }
 };
 
@@ -72,40 +70,33 @@ export const atualizarAnimal = async (req, res) => {
         const { id } = req.params;
         const { nome, especie, raca, cor, dataNascimento } = req.body;
 
-        const animalIndex = db.animais.findIndex(animalID => animalID.id === parseInt(id));
+        const animalAtualizado = await Animal.findByIdAndUpdate(
+            id,
+            { nome, especie, raca, cor, dataNascimento },
+            { new: true }
+        );
 
-        if (animalIndex === -1) {
+        if (!animalAtualizado) {
             return res.status(404).json({ error: 'Animal não encontrado.' });
         }
 
-        const animalAtualizado = {
-            ...db.animais[animalIndex],
-            nome: nome,
-            especie: especie,
-            raca: raca,
-            cor: cor,
-            dataNascimento: dataNascimento
-        };
-
-        db.animais[animalIndex] = animalAtualizado;
         return res.json(animalAtualizado);
-        
     } catch (error) {
         return res.status(500).json({ error: 'Erro no sistema ao atualizar animal.' });
     }
-}
+};
 
 export const deletarAnimal = async (req, res) => {
     try {
         const { id } = req.params;
-        const animalIndex = db.animais.findIndex(animalID => animalID.id === parseInt(id));
 
-        if (animalIndex === -1) {
+        const animalDeletado = await Animal.findByIdAndDelete(id);
+
+        if (!animalDeletado) {
             return res.status(404).json({ error: 'Animal não encontrado.' });
         }
 
-        db.animais.splice(animalIndex, 1);
-        return res.status(204).send();
+        return res.json({ message: 'Animal deletado com sucesso.' });
     } catch (error) {
         return res.status(500).json({ error: 'Erro no sistema ao deletar animal.' });
     }
