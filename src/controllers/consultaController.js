@@ -40,6 +40,8 @@ export const cadastrarConsulta = async (req, res) => {
     }
 }
 
+
+//Já que no tópico do PDF "Listagem das consultas agendadas" mostra todas as características de uma consulta, fiquei em dúvida se deveria fazer a função que mostra todas as consultas ou uma que busca consultas específicas, de acordo com as características. Portanto, fiz a função de busca também.
 export const buscarConsulta = async (req, res) => {
     try {
         const {dataConsulta, animal, vet, motivo } = req.query;
