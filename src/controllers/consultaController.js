@@ -26,8 +26,8 @@ export const cadastrarConsulta = async (req, res) => {
         const novaConsulta = {
             id: db.idConsulta,
             dataConsulta,
-            idAnimal,
-            idVeterinario,
+            animal: animalExiste,
+            vet: vetExiste,
             motivo,
             observacoes
         };
@@ -40,3 +40,27 @@ export const cadastrarConsulta = async (req, res) => {
     }
 }
 
+export const buscarConsulta = async (req, res) => {
+    try {
+        const {dataConsulta, animal, vet, motivo } = req.query;
+
+        let consultasFiltradas = db.consultas;
+
+        if (dataConsulta) {
+            consultasFiltradas = consultasFiltradas.filter(consulta => consulta.dataConsulta === dataConsulta);
+        }
+        if (animal) {
+            consultasFiltradas = consultasFiltradas.filter(consulta => consulta.animal.nome.toLowerCase().includes(animal.toLowerCase()));
+        }
+        if (vet) {
+            consultasFiltradas = consultasFiltradas.filter(consulta => consulta.vet.nome.toLowerCase().includes(vet.toLowerCase()));
+        }
+        if (motivo) {
+            consultasFiltradas = consultasFiltradas.filter(consulta => consulta.motivo.toLowerCase().includes(motivo.toLowerCase()));
+        }
+
+        return res.json(consultasFiltradas);
+    } catch (error) {
+        return res.status(500).json({ error: "Erro no sistema ao buscar consultas." });
+    }
+};
