@@ -1,12 +1,13 @@
-# API para Clínica Veterinária
-
+# Vet Clinic API
 API RESTful desenvolvida em Node.js para o gerenciamento de uma clínica veterinária. O sistema permite o cadastro e administração de veterinários, pacientes (animais) e agendamento de consultas.
 
 ## Sobre o Projeto
 
-Este projeto foi desenvolvido como parte de um teste técnico. O meu foco principal foi a estruturação de uma arquitetura limpa e escalável (MVC), utilizando o modelo try/catch para evitar confusão em erros internos.
+Este projeto foi desenvolvido como parte de um desafio técnico pessoal. O meu foco principal foi a estruturação de uma arquitetura limpa e escalável (MVC), utilizando o modelo try/catch para evitar confusão em erros internos.
 
-Por se tratar de um teste de lógica e arquitetura, a persistência de dados é realizada **em memória**, dispensando a configuração de bancos de dados externos para execução imediata.
+Por se tratar de um desafio de lógica e arquitetura, a persistência de dados é realizada **em memória**, dispensando a configuração de bancos de dados externos para execução imediata. 
+
+**Há outra branch utilizando MongoDB, feita posteriormente.**
 
 ## Tecnologias Utilizadas
 
