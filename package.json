@@ -1,7 +1,7 @@
 {
-  "name": "clinicaveterinaria-api",
+  "name": "vet-clinic-api",
   "version": "1.0.0",
-  "description": "Teste para vaga de desenvolvedor back-end na empresa PLSS Soluções, baseado em Node.js e Express.",
+  "description": "API RESTful para clinica veterinaria baseada em Node.js e Express.",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bidavinicius/plss-teste.git"
+    "url": "git+https://github.com/bidavinicius/vet-clinic-api.git"
   },
   "author": "Vinicius Bida",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bidavinicius/plss-teste/issues"
+    "url": "https://github.com/bidavinicius/vet-clinic-api/issues"
   },
-  "homepage": "https://github.com/bidavinicius/plss-teste#readme",
+  "homepage": "https://github.com/bidavinicius/vet-clinic-api#readme",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",

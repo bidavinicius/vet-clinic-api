@@ -1,6 +1,5 @@
 import db from "../database/db.js";
 
-//Essa função estava fora do requerido no teste, mas como é uma função básica de CRUD, achei interessante incluir.
 export const listarVet = async (req, res) => {
   try {
     return res.json(db.veterinarios);
